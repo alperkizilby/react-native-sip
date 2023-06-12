@@ -1,132 +1,125 @@
-import AccountRegistration from './AccountRegistration'
+import AccountRegistration from './AccountRegistration';
 
 /**
- * This describes account configuration and registration status
- */
+
+Bu sınıf, hesabın yapılandırması ve kayıt durumunu temsil eder.
+*/
 export default class Account {
+constructor(accountData) {
+this._data = accountData;
+this._registration = new AccountRegistration(accountData['registration']);
+}
+/**
 
-    constructor(data) {
-        this._data = data;
-        this._registration = new AccountRegistration(data['registration']);
-    }
+Hesap ID'sini döndürür.
+@returns {int}
+*/
+getId() {
+return this._data.id;
+}
+/**
 
-    /**
-     * The account ID.
-     * @returns {int}
-     */
-    getId() {
-        return this._data.id;
-    }
+Kayıt için istek URI'sine konulacak olan kayıt URL'sini döndürür.
+Örnek: "sip:serviceprovider".
+@returns {String}
+*/
+getURI() {
+return this._data.uri;
+}
+/**
 
-    /**
-     * This is the URL to be put in the request URI for the registration, and will look something like "sip:serviceprovider".
-     * @returns {String}
-     */
-    getURI() {
-        return this._data.uri;
-    }
+Endpoint.createAccount() ile belirtilen tam adı döndürür.
+@returns {String}
+*/
+getName() {
+return this._data.name;
+}
+/**
 
-    /**
-     * Full name specified in Endpoint.createAccount().
-     * @returns {String}
-     */
-    getName() {
-        return this._data.name;
-    }
+Endpoint.createAccount() ile belirtilen kullanıcı adını döndürür.
+@returns {String}
+*/
+getUsername() {
+return this._data.username;
+}
+/**
 
-    /**
-     * Username specified in Endpoint.createAccount().
-     * @returns {String}
-     */
-    getUsername() {
-        return this._data.username;
-    }
+Endpoint.createAccount() ile belirtilen etki alanını döndürür.
+@returns {String|null}
+*/
+getDomain() {
+return this._data.domain;
+}
+/**
 
-    /**
-     * Domain specified in Endpoint.createAccount().
-     * @returns {int|null}
-     */
-    getDomain() {
-        return this._data.domain;
-    }
+Endpoint.createAccount() ile belirtilen parolayı döndürür.
+@returns {String}
+*/
+getPassword() {
+return this._data.password;
+}
+/**
 
-    /**
-     * Password specified in Endpoint.createAccount().
-     * @returns {String}
-     */
-    getPassword() {
-        return this._data.password;
-    }
+Endpoint.createAccount() ile belirtilen proxy'yi döndürür.
+@returns {String}
+*/
+getProxy() {
+return this._data.proxy;
+}
+/**
 
-    /**
-     * Proxy specified in Endpoint.createAccount().
-     * @returns {String}
-     */
-    getProxy() {
-        return this._data.proxy;
-    }
+Endpoint.createAccount() ile belirtilen iletişim taşınma protokolünü döndürür.
+@returns {String}
+*/
+getTransport() {
+return this._data.transport;
+}
+/**
 
-    /**
-     * Transport specified in Endpoint.createAccount().
-     * @returns {String}
-     */
-    getTransport() {
-        return this._data.transport;
-    }
+Bu hesap için iletişim başlığında eklenecek ek parametreleri döndürür.
+@returns {String}
+*/
+getContactParams() {
+return this._data.contactParams;
+}
+/**
 
-    /**
-     * Additional parameters that will be appended in the Contact header
-     * for this account.
-     * @returns {String}
-     */
-    getContactParams() {
-        return this._data.contactParams;
-    }
+Bu hesap için iletişim URI'sinde eklenecek ek URI parametrelerini döndürür.
+@returns {String}
+*/
+getContactUriParams() {
+return this._data.contactUriParams;
+}
+/**
 
-    /**
-     * Additional URI parameters that will be appended in the Contact URI
-     * for this account.
-     * @returns {String}
-     */
-    getContactUriParams() {
-        return this._data.contactUriParams;
-    }
+Endpoint.createAccount() ile belirtilen kayıt sunucusunu döndürür.
+@returns {String}
+*/
+getRegServer() {
+return this._data.regServer || '';
+}
+/**
 
-    /**
-     * Port specified in Endpoint.createAccount().
-     * @returns {String}
-     */
-    getRegServer() {
-        return this._data.regServer || "";
-    }
+Endpoint.createAccount() ile belirtilen kayıt zaman aşımını döndürür.
+@returns {String}
+*/
+getRegTimeout() {
+return this._data.regTimeout;
+}
+/**
 
-    /**
-     * Port specified in Endpoint.createAccount().
-     * @returns {String}
-     */
-    getRegTimeout() {
-        return this._data.regTimeout;
-    }
+Endpoint.createAccount() ile belirtilen kayıt iletişim parametrelerini döndürür.
+@returns {String}
+*/
+getRegContactParams() {
+return this._data.regContactParams;
+}
+/**
 
-    /**
-     * @returns {String}
-     */
-    getRegContactParams() {
-        return this._data.regContactParams;
-    }
-
-    /**
-     * @returns {Object}
-     */
-    getRegHeaders() {
-        return this._data.regHeaders;
-    }
-
-    /**
-     * Account registration status.
-     * @returns {AccountRegistration}
-     */
-    getRegistration() {
-        return this._registration;
-    }
+Hesap kayıt durumunu döndürür.
+@returns {AccountRegistration}
+*/
+getRegistration() {
+return this._registration;
+}
 }
